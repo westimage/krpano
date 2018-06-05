@@ -1,0 +1,257 @@
+﻿<krpano version="1.19" title="视角" >
+
+	<include url="skin/vtourskin.xml" />
+
+	<!-- customize skin settings: maps, gyro, webvr, thumbnails, tooltips, layout, design, ... -->
+	<skin_settings maps="true"
+	               maps_type="bing" 
+    			   maps_bing_api_key="AunpwyhjrzNigL0lJuZtvLLY2KBabyzy2Th6ycurYskiYh7SqQLzSeFTMc4FVvjr"
+    			   maps_google_api_key=""
+	               maps_zoombuttons="false"
+	               gyro="true"
+	               webvr="true"
+	               webvr_gyro_keeplookingdirection="false"
+	               webvr_prev_next_hotspots="true"
+	               littleplanetintro="false"
+	               title="true"
+	               thumbs="true"
+	               thumbs_width="120" thumbs_height="80" thumbs_padding="10" thumbs_crop="0|40|240|160"
+	               thumbs_opened="false"
+	               thumbs_text="false"
+	               thumbs_dragging="true"
+	               thumbs_onhoverscrolling="false"
+	               thumbs_scrollbuttons="false"
+	               thumbs_scrollindicator="false"
+	               thumbs_loop="false"
+	               tooltips_buttons="false"
+	               tooltips_thumbs="false"
+	               tooltips_hotspots="true"
+	               tooltips_mapspots="false"
+	               deeplinking="false"
+	               loadscene_flags="MERGE"
+	               loadscene_blend="OPENBLEND(0.5, 0.0, 0.75, 0.05, linear)"
+	               loadscene_blend_prev="SLIDEBLEND(0.5, 180, 0.75, linear)"
+	               loadscene_blend_next="SLIDEBLEND(0.5,   0, 0.75, linear)"
+	               loadingtext="loading..."
+	               layout_width="100%"
+	               layout_maxwidth="814"
+	               controlbar_width="-24"
+	               controlbar_height="40"
+	               controlbar_offset="20"
+	               controlbar_offset_closed="-40"
+	               controlbar_overlap.no-fractionalscaling="10"
+	               controlbar_overlap.fractionalscaling="0"
+	               design_skin_images="vtourskin.png"
+	               design_bgcolor="0x2D3E50"
+	               design_bgalpha="0.8"
+	               design_bgborder="0"
+	               design_bgroundedge="1"
+	               design_bgshadow="0 4 10 0x000000 0.3"
+	               design_thumbborder_bgborder="3 0xFFFFFF 1.0"
+	               design_thumbborder_padding="2"
+	               design_thumbborder_bgroundedge="0"
+	               design_text_css="color:#FFFFFF; font-family:Arial;"
+	               design_text_shadow="1"
+	               />
+
+	<!--
+	    For an alternative skin design either change the <skin_settings> values 
+	    from above or optionally include one of the predefined designs from below.
+	-->
+	<!-- <include url="skin/vtourskin_design_flat_light.xml"  /> -->
+	<!-- <include url="skin/vtourskin_design_glass.xml"       /> -->
+	<!-- <include url="skin/vtourskin_design_ultra_light.xml" /> -->
+	<!-- <include url="skin/vtourskin_design_117.xml"         /> -->
+	<!-- <include url="skin/vtourskin_design_117round.xml"    /> -->
+	<!-- <include url="skin/vtourskin_design_black.xml"       /> -->
+
+
+	<!-- startup action - load the first scene -->
+	<action name="startup" autorun="onstart">
+		if(startscene === null OR !scene[get(startscene)], copy(startscene,scene[0].name); );
+		loadscene(get(startscene), null, MERGE);
+		if(startactions !== null, startactions() );
+		playsound(bgsnd,'https://krpano.com/panos/xmas/ding_dong_merrily_on_high.mp3',0);
+	</action>
+	<!-- 暂停与播放  -->  
+	<action name="playmusic">  
+    	pausesoundtoggle(bgsnd);  
+	</action>  
+	
+	
+	<scene name="scene_kt" title="客厅1" onstart="" havevrimage="true" thumburl="panos/kt.tiles/thumb.jpg" lat="30.5" lng="102" heading="0.0">
+
+		<view hlookat="-89.442" vlookat="12.032" fovtype="MFOV" fov="140.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/kt.tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1024" tiledimageheight="1024">
+				<cube url="panos/kt.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="panos/kt.tiles/vr/pano_%s.jpg" />
+		</image>
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-90.622" atv="20.038" linkedscene="scene_kt1" onloaded="add_all_the_time_tooltip_for_VR"
+			text="客厅2" />
+		<hotspot name="spotduo"  
+         fillcolor="0xaaaaaa"   
+         fillalpha="0.5" fillalphahover="0.1"             
+         borderwidth="3.0"        
+         bordercolor="0xaaaaaa" 
+         borderalpha="1.0" depth="1000" polyline="false" scaleflying="true" tx="0" ty="0" tz="0"   >    
+    	<point ath="-10" atv="-20" />            
+    	<point ath="-12.80" atv="-0.430" />    
+    	<point ath="5.2" atv="-5.6" />      
+	</hotspot>   
+	
+	</scene>
+
+	<scene name="scene_kt1" title="客厅2" onstart="" havevrimage="true" thumburl="panos/kt1.tiles/thumb.jpg" lat="35" lng="112" heading="0.0">
+
+		<view hlookat="3.379" vlookat="0.756" fovtype="MFOV" fov="140.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/kt1.tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" if="!webvr.isenabled">
+			<level tiledimagewidth="1792" tiledimageheight="1792">
+				<cube url="panos/kt1.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="1024" tiledimageheight="1024">
+				<cube url="panos/kt1.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+		</image>
+
+		<image if="webvr.isenabled">
+			<cube url="panos/kt1.tiles/vr/pano_%s.jpg" />
+		</image>
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="-6.849" atv="22.291" linkedscene="scene_kt" onloaded="add_all_the_time_tooltip_for_VR"
+			text="客厅1"/>
+		
+
+	</scene>
+	<!--tooltip上始终显示文字-->
+	<action name="add_all_the_time_tooltip_for_VR">
+	
+	 	txtadd(tooltipname, 'vrtooltip_', get(name));
+	 	addhotspot(get(tooltipname)); 
+	 	set(hotspot[get(tooltipname)],
+			type=text,
+			edge=get(hotspot[get(name)].edge),
+			distorted=get(hotspot[get(name)].distorted),
+			ath=get(hotspot[get(name)].ath),
+			atv=get(hotspot[get(name)].atv),
+			oy=-50,
+			ox=0,
+			vcenter=true,
+			padding=10,
+			mipmapping=true,
+			oversampling=2,
+			bg=true,
+			bgcolor=0x000000,
+			bgroundedge=5,
+			bgalpha=0.65,
+			bgborder=0,
+			bgshadow='0 0 0 0x000000 0',
+			css=calc(device.mobile ? 'text-align:center; color:#FFFFFF; font-family:MicrosoftYahei; font-weight:bold; font-size:24px;':'text-align:left; color:#FFFFFF; font-family:MicrosoftYahei; font-size:24px;'),
+			txtshadow='0 0 0 0x000000 0';
+			enabled=false,
+       	 );
+	 	if(text == '' OR text === null,
+ 
+		 	copy(hotspot[get(tooltipname)].html,scene[get(linkedscene)].title),
+		 	copy(hotspot[get(tooltipname)].html,text);
+ 		); 
+	 	if(lp_running == false,
+	 		set(hotspot[get(tooltipname)].visible,true); 
+	 		, 	
+	 		if(!webvr.isenabled,
+	 	  if(lp_running == true,
+		 		set(hotspot[get(tooltipname)].visible,false); 
+		 		set(hotspot[get(tooltipname)].mark2,true);
+	 	   	);
+	 	  	);
+	 		);
+	 	if(hotspot[get(name)].normal == false, 
+ 
+			set(hotspot[get(tooltipname)].normal,false);
+			set(hotspot[get(tooltipname)].onloaded,
+				if(webvr.isenabled,
+				set(visible,false);
+				,	
+				if(lp_running == false OR lp_running == null OR lp_running === null,  
+					set(visible,true);
+					);
+				);
+	       );
+ 
+	 	);
+	</action>
+	<!--自动循环旋转  开始-->
+	<!-- <autorotate enabled="true" waittime="2.0" speed="-10.0" horizon="0.0"/>
+	 
+	<events name="onautorotateevents" keep="true" onautorotateoneround="nextscene()"/>
+	 
+	<action name="nextscene">
+		autorotate.stop();wait(0);
+		set(ns, get(scene[get(xml.scene)].index));
+		set(maxs, get(scene.count));
+		add(ns,1);
+		if(ns == maxs, set(ns,0));
+		loadscene(get(scene[get(ns)].name), null, MERGE, BLEND(1.5));
+		autorotate.start();
+	</action> -->
+	<!--自动循环旋转  结束-->
+	
+	<!-- 指南针  开始 -->
+	<layer name="compass1" url="skin/compass_bg.png" keep="true" align="righttop" x="10" y="10" children="false" scalechildren="true" destscale="1.0" onclick="switch(destscale,1.0,0.5);tween(scale,get(destscale));">
+		<layer name="compass1_plate"   url="skin/compass_plate.png" keep="true"    align="center"  zorder="1" />
+		<layer name="compass1_pointer" url="skin/compass_pointer.png" keep="true"  align="center"  zorder="2" />
+		<layer name="compass1_ring"    url="skin/compass_ring.png"  keep="true"   align="lefttop" zorder="3" />
+	</layer>
+ 
+	<events name="compass_events" keep="true" onviewchange="compass_update_rotate();" />
+ 
+	<action name="compass_update_rotate">
+        	set(global_heading, 180);
+		calc(plugin[compass1_pointer].rotate, view.hlookat - global_heading);		
+	</action>
+	<!-- 指南针  结束 -->
+
+	<!--播放音乐  开始-->
+	<plugin name="soundinterface"
+        url.flash="%SWFPATH%/plugins/soundinterface.swf"
+        url.html5="%SWFPATH%/plugins/soundinterface.js"
+        rootpath=""
+        preload="true"
+        keep="true"
+        />
+    <!--播放音乐  结束-->
+	
+	<!--小地图  开始
+    <plugin name="map" keep="true" key="AunpwyhjrzNigL0lJuZtvLLY2KBabyzy2Th6ycurYskiYh7SqQLzSeFTMc4FVvjr"  
+            url="%SWFPATH%/plugins/bingmaps.swf"  
+            alturl="%SWFPATH%/plugins/bingmaps.js"  
+            align="leftbottom" x="10" y="10" width="300" height="100%"  
+            bgcolor="0x000000" bgalpha="0.5"  
+            maptype="normal"  
+            zoom="25"  
+            onmapready="loadscene(0); zoomToSpotsExtent();"  
+            onmapmoved=""  
+            onmapzoomed="" 
+            onloaded="skin_addmapspots();" >  
+        <radar visible="true" dragable="true" size="100" zoomwithmap="false" headingoffset="90" alpha="0.5" fillcolor="0xFFFFFF" fillalpha="1.0" linecolor="0xFFFFFF" linealpha="0.0" linewidth="0.0" glow="true" glowcolor="0xFFFFFF" glowwidth="4" glowstrength="4" />  
+        <maptypecontrol visible="true" anchor="righttop" x="2" y="2"  buttonalign="v"  />  
+   
+        <spot name="scene1" lat="30.5" lng="102" heading="0.0"  active="true" onclick="loadscene(scene_kt, null, MERGE, BLEND(1));" />  
+        <spot name="scene2" lat="35" lng="112" heading="0.0" active="true" onclick="loadscene(scene_kt1, null, MERGE, BLEND(1));" />  
+        
+    </plugin>
+    小地图  结束-->
+	<!--引入热点编辑插件  开始-->
+    <plugin name="editor" url="plugins/editor.swf" keep="true"/>
+	<!--引入热点编辑插件  结束-->
+
+</krpano>
